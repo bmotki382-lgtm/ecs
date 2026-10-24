@@ -1,0 +1,24 @@
+const express = require("express");
+const app = express();
+
+app.get("/", async (req, res) => {
+  try {
+    const response = await fetch(
+      "http://backend.practice.local:3001/"
+    );
+
+    const data = await response.json();
+
+    res.send(`
+      <h1>ECS Frontend</h1>
+      <h2>Backend Response</h2>
+      <pre>${JSON.stringify(data, null, 2)}</pre>
+    `);
+  } catch (error) {
+    res.status(502).send("Backend connection failed: " + error.message);
+  }
+});
+
+app.listen(3000, "0.0.0.0", () => {
+  console.log("Frontend running on port 3000");
+});
