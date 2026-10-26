@@ -1,4 +1,3 @@
-```yaml
 name: Build and Push Production Images
 
 on:
