@@ -1,3 +1,4 @@
+```yaml
 name: Build and Push Production Images
 
 on:
@@ -32,11 +33,11 @@ jobs:
         with:
           context: ./app/backend
           push: true
-          tags: 948935483157.dkr.ecr.ap-south-1.amazonaws.com/starburst-prod-backend:${{ github.sha }}
+          tags: 948935483157.dkr.ecr.ap-south-1.amazonaws.com/starburst-prod-backend:${{ github.sha }}-${{ github.run_attempt }}
 
       - name: Build and push frontend
         uses: docker/build-push-action@v6
         with:
           context: ./app/frontend
           push: true
-          tags: 948935483157.dkr.ecr.ap-south-1.amazonaws.com/starburst-prod-frontend:${{ github.sha }}
+          tags: 948935483157.dkr.ecr.ap-south-1.amazonaws.com/starburst-prod-frontend:${{ github.sha }}-${{ github.run_attempt }}
